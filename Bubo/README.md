@@ -1,2 +1,0 @@
-# Bubo
-Projet BTS Bubo
