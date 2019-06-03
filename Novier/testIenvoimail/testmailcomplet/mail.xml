@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <mail>
+	 <destinataire>dnovier@btslivh.eu</destinataire>
+	 <expediteur>dnovier1@gmail.com</expediteur>
+	 <clientmessagerie>smtp.gmail.com</clientmessagerie>
+	 <port>587</port>
+	 <nomdecompte>dnovier1@gmail.com</nomdecompte>
+	 <motdepasse>thedylann123123</motdepasse>
+         <sujet>base de donnée numero XXX</sujet>
+         <lienbdd>/home/snir2g2/Bureau/Enregistrement.db</lienbdd>
+         <nomfichierbdd>Enregistrement.db</nomfichierbdd>
+	 
+ </mail>
+
