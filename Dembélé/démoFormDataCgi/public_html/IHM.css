@@ -1,0 +1,125 @@
+#tableau{
+	padding: 2%;
+        padding-left:1%;
+        padding-right: 1%;
+        text-shadow:0px 0px 0px;
+}
+
+
+#tableau tr:hover {
+background-color: silver;
+}
+
+/*.ui-btn  {
+
+	border-radius:1px ;
+	border:1px ;
+	min-width:30px !important;
+        padding-left: 1px;
+        padding-right: 1px;
+        
+}*/
+
+/* Le tableau */
+#divConteneur{
+	/*min-height:235px;*/
+        max-height:235px;
+	/*height:235px;/*pour IE qui comprend rien, 
+              et qui ne reconnait pas min-height, mais qui 
+              comprend mal height*/
+	/*min-width:340px;*/
+	/*width:340px;/*pour IE qui comprend rien*/
+	overflow:auto;/*pour activer les scrollbarres*/
+        color: black;
+}
+
+
+/*Quand on passe la souris sur le tableau
+il grise la ligne*/ 
+#divConteneur li {
+   background-color: black;
+   border-top: 1px solid #fff;
+
+}
+#divConteneur li:hover {
+   background-color: #ccc;
+}
+/*#divConteneur li:hover  {
+   cursor: pointer;
+}
+*/
+.ui-title
+{
+    width: 70%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.ui-block-b
+{
+	text-align: center;
+}
+
+#metres, #watts
+{
+	text-align: left;
+	margin-top: 20px;
+}
+
+.ui-content
+{
+	background-color: rgba(65, 2, 2, 1);
+}
+.ui-content1
+{
+    background-color: rgba(0, 0, 0, 1);
+    color: black;
+}
+#labelLatitude, #labelLongitude, #TypeLampa, 
+#ULOR, #TypeAmp, #hauteur, #puissance, #albedo, #agglo,
+#rue, #notes, #lux{
+	text-align: left;
+}
+
+.entete
+{
+	/*padding-right:  100%;*/
+        text-align: center;
+
+}
+
+.td
+{
+    width: 25%;
+}
+
+.ui-responsive
+{
+	/*background-color: rgba(226, 145, 145,1);*/
+	width: 98%;
+	border-style:solid;
+	border-color: grey;
+        margin-top: 3%;
+	margin-left: 1%;
+        margin-right: 1%;
+}
+
+.remplissage
+{
+    text-align: center;
+    overflow: hidden;
+    padding-left: 1px;
+    padding-right: 1px;    
+}
+
+#Logo {
+    display: block;
+    margin: 1em auto 0;
+    width: 60%;
+}
+
+/*.mesSelect
+{
+     background-color:#C19B9B;
+}*/
+
