@@ -1,0 +1,14 @@
+SBP
+SHP 150 
+SHP 250
+SHP 400
+Incandescence
+Halogene
+Vapeur de mercure
+Galogenures metalliques
+Tubes fluorescent
+Fluocompacte
+Induction
+LED 2700
+LED 3000
+LED 4000

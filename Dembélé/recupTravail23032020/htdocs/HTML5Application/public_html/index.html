@@ -1,0 +1,368 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <title>BUBO</title> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <meta charset="UTF-8">    
+        <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="bubo2.js"></script>
+        <script src="jquery.min.js"></script>
+        <script src="jquery.sse.js"></script>  
+
+        <link rel="stylesheet" href="jquery.mobile.min.css"
+        <!--La feuille utilisé par défaut-->
+		<script language="JavaScript" src="changement_css.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="IHM.css" title="IHM">
+		<!--Une feuille alternative-->
+		<link rel="alternate stylesheet" type="text/css" href="GIHM.css" title="GIHM">
+   <!-- <link rel="stylesheet" href="jquery.mobile.min.css" />
+        <link rel="stylesheet" type="text/css" href="IHM.css"/>  -->       
+
+    </head> 
+    <body onload="displayList(); lireListe(); griserChamps();">
+
+        <div data-role="page" id="page1">
+
+            <div data-role="content">
+
+                <fieldset class="ui-grid-b">
+
+                    <div class="ui-block-a" ><img src="Bubo.png" id="photo" alt="Bubo" style="width: 90%"/></div>
+                    <div class="ui-block-b" ><img src="LogoBubo.png" id="Logo" alt="logo"  /></div>
+                    <div class="ui-block-c" ><input type="button" style="width: 60%" id="buttoncolor" value="Jour" ></div>
+                    <div class="ui-block-d" style="width: 33%"><input type="button"  id="modeRevue" value="Revue"></div>
+
+                </fieldset>
+
+
+
+
+                <div id="divConteneur" class="ui-grid-solo">
+                    <!--ul data-role="listview" class="ui-listview"  id="tab2" -->
+                    <div id="tableau" class="ui-grid-solo"></div> 
+                    <!--/ulc-->
+                </div>
+
+
+                <fieldset class="ui-grid-b">
+                    <div class="ui-block-a"><input type="button" id="nouveau"   value="Nouveau" ></div>
+                    <div class="ui-block-b"><input type="button" id="supprimer"  value="Supprimer" disabled></div>
+                    <div class="ui-block-c"><input type="button" id="modifier"  value="Modifier" disabled></div>
+                </fieldset>
+
+                <fieldset class="ui-grid-a"> 
+                    <div class="ui-block-a" ><input type="button"  id="geo" value="Geolocaliser" disabled></div>
+                    <div class="ui-block-b" ><input type="button"  id="save" value="Enregistrer" disabled></div>        
+                </fieldset>    
+
+                <br>
+
+
+
+                <div class="ui-block-a"><label id="labelLatitude" style="color:white;" >Informations de localisation:</label></div>    
+                <br>
+                <hr size="3" color="white">
+                <br>
+                <div id=btnGps>
+                    <fieldset class="ui-grid-a">
+                        <div class="ui-block-a"><label id="labelLatitude" style="color:white;" >Latitude:</label></div>
+                        <div class="ui-block-b"><label id="labelLongitude" style="color:white;" >Longitude:</label></div>
+                    </fieldset>
+
+                    <fieldset class="ui-grid-a">
+                        <div class="ui-block-a "><input id="dLatitude" type="text" name="LATITUDE" disabled></div>
+                        <div class="ui-block-b "><input id="dLongitude" type="text" name="LONGITUDE" disabled></div>     
+                    </fieldset>
+                </div>
+
+                <div id=btnRed>
+
+                    <fieldset class="ui-grid-a">    
+                        <div class="ui-block-a"><label id="labelLatitude" style="color:white;" >Latitude:</label></div>
+                        <div class="ui-block-b"><label id="labelLongitude" style="color:white;" >Longitude:</label></div>
+
+                    </fieldset>
+
+                    <fieldset class="ui-grid-a">
+                        <div class="ui-block-a" ><input id="dLatitude" type="text" style="background-color:red;"   
+                                                        value="Localisation en cours " name="LATITUDE" disabled></div>
+                        <div class="ui-block-b" ><input id="dLongitude" type="text" style="background-color:red;"  
+                                                        value="Localisation en cours " name="LONGITUDE" disabled></div>   
+
+                    </fieldset>
+
+                </div>
+                <br>
+
+
+                <div id=geoFix>
+                    <fieldset class="ui-grid-a">
+                        <div class="ui-block-a" style="width: 50%;"><label id="labelAltitude" style="color:white;" >Altitude</label></div>
+                        <div class="ui-block-b" style="width: 50%;"><label id="labelSatellite" style="color:white;" >Satellites</label></div>
+                    </fieldset>   
+
+
+                    <fieldset class="ui-grid-a">
+                        <div class="ui-block-a " style="width: 50%;"><input id="dAltitude" type="text" name="altitude"  disabled></div>
+                        <div class="ui-block-b " style="width: 50%;"><input id="dSatellite" type="text" name="satellites" disabled></div>     
+                    </fieldset>
+
+
+
+
+
+                    <fieldset class="ui-grid-a">
+                        <div class="ui-block-a" style="width: 50%;"><label id="labelNbrMesures" style="color:white;">Nombres d'acquisitions:</label></div>
+                        <div class="ui-block-b" style="width: 25%;"><label id="labelFixe" style="color:white;">Fix:</label></div>
+                        <div class="ui-block-b" style="width: 25%;"><label id="labelPrecision" style="color:white;">HDOP:</label></div>
+                    </fieldset>
+
+                    <fieldset class="ui-grid-b">
+                        <div class="ui-block-a" style="width: 50%;"><input id="dNbrMesures"  type="text" name="nbrMesures" disabled></div>
+                        <div class="ui-block-b" style="width: 25%;"><input id="dFix" type="text" name="fix"   disabled></div>
+                        <div class="ui-block-c"  style="width: 25%;"><input id="dPrecision" type="text" name="precision" disabled></div> 
+                    </fieldset>
+                </div>  
+
+                <br>
+                <div class="ui-block-a"><label id="labelLatitude" style="color:white;" >Informations complémentaires:</label></div>    
+                <br>
+                <hr size="3" color="white">
+                <br>
+
+                <fieldset class="ui-grid-a"> 
+                    <div class="ui-block-a"><label id="TypeLampa" style="color:white;">Type de Lampadaire:</label></div> 
+                    <div class="ui-block-b"><label id="ULOR" style="color:white;">ULOR:</label></div>
+                </fieldset>
+
+                <div class="ui-grid-a ">
+
+                    <div class="ui-block-a" style="width: 50%;" >
+                        <select class= "mesSelect" id="dlampadaire" name="LAMPADAIRE" style="background-color:#C19B9B;" disabled>
+                            <OPTION label=" "> </OPTION>
+                        </select>      
+                    </div>  
+
+                    <div class="ui-block-b" style="width: 50%;" >
+                        <select  class= "mesSelect" id="dULOR" name="ULOR" style="background-color:#C19B9B;" disabled>
+                            <OPTION label=" "> </OPTION>              
+                        </select>
+                    </div>
+                </div>
+
+                <fieldset class="ui-grid-a">
+                    <div class="ui-block-a" style="width: 50%;"><label id="TypeAmp" style="color:white;">Type d'ampoule:</label></div>
+                    <div class="ui-block-b" style="width: 50%;"><label id="hauteur" style="color:white;">Hauteur:</label></div>
+                </fieldset>
+
+                <fieldset class="ui-grid-b">
+                    <div class="ui-block-a" style="width:50%;"> 
+                        <select class= "mesSelect" id="dAmpoule" name="AMPOULE" style="background-color:#C19B9B;" disabled>
+                            <OPTION label=" "> </OPTION> 
+                        </select>
+
+                    </div>
+                    <div class="ui-block-b" style="width:30%;"><input type="text" id="dheight"  name="HAUTEUR" disabled></div>
+                    <div class="ui-block-c" style="width:20%;"><label id="metres" style="color:white;">Metres</label></div>
+                </fieldset>
+
+                <fieldset class="ui-grid-a">
+                    <div class="ui-block-a" style="width: 65%;"><label id="puissance" style="color:white;">Puissance:</label></div>
+                    <div class="ui-block-b" style="width: 35%;"><label id="albedo" style="color:white;">Albedo :</label></div>           
+                </fieldset>
+
+                <fieldset class="ui-grid-b">
+                    <div class="ui-block-a" style="width: 40%;"><input id="dPuissance" type="text" name="PUISSANCE" disabled></div>
+                    <div class="ui-block-b" style="width: 20%;"><label id="watts" style="color:white;" >Watts</label></div>
+                    <div class="ui-block-c" style="width: 40%;"> 
+                        <select class= "mesSelect" id="dAlbedo"  name="ALBEDO" style="background-color:#C19B9B;" disabled>
+                            <OPTION label=" "> </OPTION> 
+                        </select>
+                    </div>
+                </fieldset>
+
+                <fieldset class="ui-grid-a">
+                    <div class="ui-block-a" ><label id="agglo" style="color:white;">Agglomeration:</label></div>
+                    <div class="ui-block-c" ><label id="rue" style="color:white;">Rue:</label></div>
+                </fieldset>
+
+                <fieldset class="ui-grid-a">
+                    <div class="ui-block-a" ><input id="dTown"  type="text" name="AGGLOMERATION" disabled></div>
+                    <div class="ui-block-b" ><input id="dStreet"  type="text" name="RUE" disabled></div>
+                </fieldset>
+
+
+                <fieldset class="ui-grid-a">
+                    <div class="ui-block-a" style="width: 60%;"><label id="notes" style="color:white;">Notes:</label></div>
+                    <div class="ui-block-b" style="width: 40%;"><label id="lux" style="color:white;">Flux Lux.:</label></div>
+                </fieldset>
+
+                <fieldset class="ui-grid-b">
+                    <div class="ui-block-a" style="width: 60%;"><input id="dNotes"  type="text" name="NOTES" disabled></div>
+                    <div class="ui-block-b" style="width: 20%;"><input type="button" style="background-color:red;"  id="bLux" value="Lux" disabled></div>
+                    <div class="ui-block-c"  style="width: 20%;"><input id="dLum" type="text" name="LUMINOSITE" disabled></div> 
+                </fieldset>
+
+
+
+
+                <fieldset class="ui-grid-b"> <!--Bouton PHOTO -->
+                    <div class="ui-block-a" style="width: 45%;"><input type="button" id="bAllDelete" value="ToutSupprimer" ></div>
+                    <div class="ui-block-b" style="width: 25%;"><a href="#menu" id="pic" style="background-color:#FFE3E3;" class="ui-btn ui-corner-all 
+                                                                   ui-btn-inline ui-disabled" data-rel="popup">Photo</a>
+                        <!--Création du pop up -->
+                        <div data-role="popup" id="menu">
+                            <a href="#page2" data-transition="slide" class="ui-btn ui-corner-all ui-btn-inline">
+                                Galerie</a>  <!--Direction la Galerie -->
+<input type='file' accept='image/*' onchange='openFile(event)'><br>
+<img id='output'>
+<script>
+  var openFile = function(event) {
+    var input = event.target;
+
+    var reader = new FileReader();
+    reader.onload = function(){
+      var dataURL = reader.result;
+      var output = document.getElementById('output');
+      output.src = dataURL;
+    };
+    reader.readAsDataURL(input.files[0]);
+  };
+</script>
+
+<!--                            <input type="file" accept="image/" id="capture" capture="camera">   --> 
+                        </div>
+                    </div>
+                    <div class="ui-block-c" style="width: 30%;"><input type="button"  id="bShutdown" value="Arrêter" ></div>        
+                </fieldset>
+
+                <fieldset class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <a href="#page3" data-transition="slide" 
+                           class="ui-btn ui-corner-all ui-btn-inline" onclick="majcolorp3();">
+                            Configuration</a></div>  <!--Direction la Page de config -->
+                    <div class="ui-block-b"><input type="button" id="envoibdd"   value="Envoi bdd" ></div>
+                </fieldset>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="IHM.js"></script>  
+        <script type="text/javascript"></script>
+        <script type="text/javascript" src="jquery.mobile.min.js"></script>
+
+
+        <!-- </div>
+       </div>
+ 
+        -->
+
+        <!-- Let's go page 2 -->
+
+        <div data-role="page" id="page2">
+            <div data-role="header">
+                <h1>Bienvenue dans la Galerie !</h1>
+            </div>
+
+            <div data-role="popup" class="ui-content1">
+                <div id='miniature'></div>
+                <a href="#page1" data-rel="back" data-transition="slide" class="ui-btn ui-corner-all ui-btn-inline">Go Back To Page 1</a>
+            </div>
+
+        </div>
+
+        <div data-role="page" id="page3" >
+
+            <h1>Bienvenue sur la page de configuration !</h1>
+            <br>
+            <h2>Configuration GPS:</h2>
+
+
+            <fieldset class="ui-grid-a">
+                <div class="ui-block-a" style="width: 40%;"><label id="PrecisionGps" >Vitesse de transmission du gps en Bauds </label></div>
+
+                <select name="selectorPuissance" id="selectorPuissance">
+                    <option value="0" class="0">Faire un choix</option>
+                    <option value="1" class="1">4800 bauds</option>
+                    <option value="2" class="2">9600 bauds</option>
+                </select>
+            </fieldset>
+            <br>    
+
+                        <h2>Configuration taille de la police:</h2>
+
+
+            <fieldset class="ui-mobile label">
+                <div class="ui-block-a" style="width: 40%;"><label >Taille de la police : </label></div>
+<button onclick="setActiveStyleSheet('IHM'); return false;">Normal</button>
+<button onclick="setActiveStyleSheet('GIHM'); return false;">Grand</button>
+
+<!--				<select ....>
+					<option value="setActiveStyleSheet('IHM'); return false;">Normal</option>
+					<option value="setActiveStyleSheet('GIHM'); return false;">Grand</option>
+				</select>
+            </fieldset>
+            <br>    
+
+<ul>
+
+<li><a id="IHM1" href="#" onclick="setActiveStyleSheet('IHM'); return false;">Normal</a></li>
+
+<li><a id="GIHM2" href="#" onclick="setActiveStyleSheet('GIHM'); return false;">Grand</a></li>
+
+</ul>  -->
+
+            <div>
+                <fieldset >
+
+                    <h2>Modification de la couleur principale:</h2>
+
+                    <div>
+
+                        <label for="head">Choisir une couleur ou écrire une valeur </label>
+                        <input type="color" id="head" name="head"
+                               value="#410202">
+                    </div> 
+                </fieldset>
+
+
+
+
+                <br>
+                <fieldset class="ui-grid-a">    
+                    <div class="ui-block-a" style="width: 70%;"><label for="head">Ecrire la couleur en Hexadecimal sous forme "#XXXXXX" </label></div>
+                    <div   class="ui-block-b"  style="width: 30%;"><input id="dColor"  style="background-color:white;" type="text" name="COLOR" ></div>
+
+                </fieldset>
+
+                <fieldset >
+                    <h2>Modification de la couleur secondaire</h2>
+
+                    <div>
+
+                        <label for="head1">Choisir une couleur ou écrire une valeur </label>
+                        <input type="color" id="head1" name="head1"
+                               value="#c19b9b">
+                    </div> 
+                </fieldset>
+
+
+                <br>
+                <fieldset class="ui-grid-a">    
+                    <div class="ui-block-a" style="width: 70%;"><label  for="head">Ecrire la couleur en Hexadecimal sous forme "#XXXXXX" </label></div>
+                    <div   class="ui-block-b"  style="width: 30%;"><input id="dColor1"  style="background-color:white;" type="text" name="COLOR1" ></div>
+
+                </fieldset>
+
+
+
+            </div>
+            <br>
+
+            <a href="#page1" data-transition="slide"  class="ui-btn"  id="valider" >
+                Valider</a>  <!--Direction la Page de config et validation-->
+        </div>           
+
+
+    </body>
+</html>
+
